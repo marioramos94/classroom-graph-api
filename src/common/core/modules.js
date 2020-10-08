@@ -7,11 +7,6 @@ const globalTypeDefs = gql`
   type Query
   type Mutation
   type Subscription
-  type SuccessResponse {
-    status: Int!
-    code: String!
-    message: String!
-  }
 `
 const makeExecutableSchemaFromModules = ({
   modules
@@ -21,13 +16,15 @@ const makeExecutableSchemaFromModules = ({
     globalTypeDefs,
     ...directives.typeDefs,
   ]
-  let resolvers
+  let resolvers ={
+
+  }
   modules.forEach(module => {
     typeDefs = [
       ...typeDefs,
       ...module.typeDefs
     ]
-    resolvers =  module.resolvers
+    resolvers =  deepmerge(resolvers,module.resolvers)
   })
   return makeExecutableSchema({
     typeDefs,

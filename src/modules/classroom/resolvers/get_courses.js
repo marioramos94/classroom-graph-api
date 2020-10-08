@@ -1,8 +1,9 @@
 import { findAll } from './../../../db/repositories/course.repository'
-const getCourses = async ()=>{
+
+const getCourses = async () => {
   return await findAll()
 }
 
 export {
-    getCourses
+  getCourses
 }

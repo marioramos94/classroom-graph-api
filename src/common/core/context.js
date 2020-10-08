@@ -1,5 +1,5 @@
 const tokenUtil = require('../auth/token')
-import UserRepository from '../../db/repositories/user.repository'
+import { findUserById } from '../../db/repositories/user.repository'
 const TOKEN_HEADER_NAME = 'Authorization'
 const getUser = async req => {
   if (!req) {
@@ -17,7 +17,7 @@ const getUser = async req => {
 
   try {
     const decodedToken = await tokenUtil.getDecodedToken(tokenHeader)
-    return await UserRepository.findUserById(decodedToken.user.id)
+    return await findUserById(decodedToken.user.id)
   } catch (error) {
     return null
   }

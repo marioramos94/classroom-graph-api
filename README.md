@@ -17,7 +17,6 @@ POSTGRES_USER=user
 POSTGRES_PASSWORD=userpw
 POSTGRES_DB=dbname
 POSTGRES_HOST=db
-npx sequelize-cli db:seed:all --url 'postgres://user:userpw@db/dbname'
 CDN=https://cdn.new.project
 NODE_PORT_APP=3003
 NODE_PORT_SERVER=3003
@@ -80,7 +79,7 @@ For debugging with docker we have to setup the following configuration on 'launc
 To run seeds, we need to install [sequelize-cli](https://sequelize.org/master/manual/migrations.html)
 
 ```sh
-npx sequelize-cli db:seed:all --url 'postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${HOST}/${POSTGRES_DB}'
+npx sequelize-cli db:seed:all --url 'postgres://user:userpw@0.0.0.0/dbname'
 ```
 
 

@@ -27,6 +27,8 @@ const server = new ApolloServer({
     }
     return { message: err, code: 'no code' }
   },
+  introspection: true,
+  playground: true,
 })
 
 const app = express()

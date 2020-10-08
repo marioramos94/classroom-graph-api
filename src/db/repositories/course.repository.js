@@ -1,4 +1,4 @@
-import { Course, CourseUser,Teacher,User } from '../models'
+import { Course, CourseUser, User } from '../models'
 
 const findAll = async () => {
 	return await Course.findAll();

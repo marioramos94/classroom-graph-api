@@ -2,7 +2,11 @@ import Teacher from '../models/teacher'
 import Course from '../models/course'
 
 const findAll = async () => {
-  return await Teacher.findAll();
+  return await Teacher.findAll({
+    include: [
+      { model: Course, as: 'courses', required: false }
+    ]
+  });
 }
 
 const findOne = async (id) => {

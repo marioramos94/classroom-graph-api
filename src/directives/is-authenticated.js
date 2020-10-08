@@ -9,8 +9,8 @@ class IsAuthenticatedDirective extends SchemaDirectiveVisitor {
     const { resolve = defaultFieldResolver } = field
     field.resolve = async function (...args) {
       const context = args[2]
-      if (!context || !context.user) {
-        throw AuthenticationError
+      if (!context || !context.user || !context.user.isAdmin) {  
+        throw new AuthenticationError()
       }
       return resolve.apply(this, args)
     }
