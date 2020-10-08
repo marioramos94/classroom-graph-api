@@ -1,0 +1,53 @@
+# Write your query or mutation here
+query {
+  getTeachers{
+    id
+    name
+    code
+  }
+}
+
+# Write your query or mutation here
+query {
+  getStudents{
+    id
+    name
+    email
+  }
+}
+
+query {
+  getCourses{
+    id
+    name
+    code
+    teacherId
+  }
+}
+
+query {
+  getClassroom(id:"1"){
+    teacher{
+      id
+    }
+    course{
+      id
+    }
+    students{
+      id
+    }
+  }
+}
+
+mutation {
+  
+  addStudentToClassroom(sub: {
+	course : "1",
+  student :"2"
+  }){
+    student{
+      id
+    }
+  }
+  
+}

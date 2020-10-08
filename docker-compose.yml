@@ -1,0 +1,33 @@
+version: '3.5'
+
+services:
+  ngnix:
+    image: nginx:latest
+    links:
+      - backend
+    volumes:
+      - .:/usr/src/app
+      - .docker/dev_conf/site.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - "8080:80"
+    working_dir: /usr/src/app
+  db:
+    image: postgres
+    volumes:
+      - ./data/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - .docker/db-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    env_file: .dev.env
+  backend:
+    build:
+      context: "./"
+    links:
+      - db
+    volumes:
+      - ./:/usr/src/app
+    ports:
+      - "8081:3003"
+      - "9229:9229"
+    command: "/bin/bash -l bootstrap.sh"
+    env_file: .dev.env
