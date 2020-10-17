@@ -84,4 +84,6 @@ npx sequelize-cli db:seed:all --url 'postgres://user:userpw@0.0.0.0/dbname'
 
 
 ## Happy Coding
+
 Now, your workspace is ready to development
+Server ready at http://localhost:8080/
